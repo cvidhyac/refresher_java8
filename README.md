@@ -1,8 +1,9 @@
-# refresher_java8
+# refresher_java8+
 
-Goal: Practice functional programming features
+The project is organized into mutliple modules.
 
 ## Concepts
+
 - Consumer
 - Supplier
 - Lambda
@@ -12,3 +13,5 @@ Goal: Practice functional programming features
 - BiSupplier
 - IntStream
 - Stream functions
+- Generics review - bounded and unbounded wildcards, invariance, covariance and contravariance
+
