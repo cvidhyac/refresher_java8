@@ -1,6 +1,21 @@
 package com.learn.lombok.model;
 
-import java.util.List;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
 
-public record Employee(int id, String firstName, String lastName, List<Address> addresses) {
+import java.time.LocalDate;
+
+@EqualsAndHashCode
+@Builder
+public class Employee {
+
+    private int id;
+
+    private String firstName;
+
+    private String lastName;
+
+    private Address address;
+
+    private LocalDate joiningDate;
 }
