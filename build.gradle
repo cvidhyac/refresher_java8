@@ -6,9 +6,25 @@ allprojects {
 allprojects {
 
     apply plugin: 'java'
-
     repositories {
         mavenCentral()
     }
+
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "skipped", "failed"
+        }
+    }
+
+    // Specify the output directory for compiled classes
+    sourceSets {
+        main {
+            output.dir(buildDir.toPath().resolve("classes").toString())
+        }
+    }
+
+    // Define a dependency between tasks
+    jar.dependsOn compileTestJava
 }
 

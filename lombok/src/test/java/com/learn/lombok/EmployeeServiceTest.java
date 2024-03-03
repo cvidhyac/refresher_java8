@@ -1,13 +1,12 @@
 package com.learn.lombok;
 
-import com.learn.lombok.model.Employee;
 import com.learn.lombok.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
@@ -18,11 +17,15 @@ class EmployeeServiceTest {
 
     @Test
     void getEmployees() {
+        var employees = employeeService.getAllEmployees();
+        assertNotNull(employees);
+        assertEquals(10, employees.size());
 
-        List<Employee> employees = employeeService.getAllEmployees();
-        // Assertions
-        assertNotNull(employees); // Check that the list is not null
-        assertEquals(10, employees.size()); // Check that the list has 10 elements
+    }
 
+    @Test
+    void resetsToCurrentDate() {
+        int employeeId = employeeService.resetARandomEmployee();
+        assertNotEquals(0, employeeId);
     }
 }

@@ -2,10 +2,12 @@ package com.learn.lombok.model;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.time.LocalDate;
 
 @EqualsAndHashCode
+@Getter
 @Builder
 public class Employee {
 
