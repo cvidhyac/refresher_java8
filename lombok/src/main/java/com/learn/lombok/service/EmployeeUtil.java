@@ -54,9 +54,9 @@ public class EmployeeUtil {
 
     public static LocalDate randomDate(int startYear, int endYear) {
 
-        int minDay = (int) LocalDate.of(startYear, 1, 1).toEpochDay();
-        int maxDay = (int) LocalDate.of(endYear, 12, 31).toEpochDay();
-        long randomDay = minDay + (long) random.nextInt(maxDay - minDay);
+        var minDay = (int) LocalDate.of(startYear, 1, 1).toEpochDay();
+        var maxDay = (int) LocalDate.of(endYear, 12, 31).toEpochDay();
+        var randomDay = minDay + (long) random.nextInt(maxDay - minDay);
         return LocalDate.ofEpochDay(randomDay);
     }
 

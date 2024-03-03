@@ -2,7 +2,7 @@
 
 The project is organized into mutliple modules.
 
-## Concepts
+## Java8+ concepts
 
 - Consumer
 - Supplier
@@ -15,3 +15,8 @@ The project is organized into mutliple modules.
 - Stream functions
 - Generics review - bounded and unbounded wildcards, invariance, covariance and contravariance
 
+## Lombok
+
+ - When to use @Data, @Builder, @ToString, @EqualsAndHashCode
+ - Use JEP 286 - Local Variable Type Inference with Lombok
+ - JEP 395 (Java Records) vs @Data and @Value
