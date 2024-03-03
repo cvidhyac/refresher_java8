@@ -1,5 +1,6 @@
 package com.learn.lombok;
 
+import com.learn.lombok.model.EmployeeType;
 import com.learn.lombok.service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,11 @@ class EmployeeServiceTest {
     void resetsToCurrentDate() {
         int employeeId = employeeService.resetARandomEmployee();
         assertNotEquals(0, employeeId);
+    }
+
+    @Test
+    void updateEmployeeToFullTime() {
+        EmployeeType employeeType = employeeService.convertEmployeeToFullTime();
+        assertEquals(EmployeeType.FTE, employeeType);
     }
 }

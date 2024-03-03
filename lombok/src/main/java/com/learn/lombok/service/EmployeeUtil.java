@@ -44,7 +44,7 @@ public class EmployeeUtil {
     }
 
 
-    private static Address randomAddress() {
+    public static Address randomAddress() {
         return Address.builder().unitNumber(randomId())
                 .addressLine(randomField(ADDRESSES))
                 .city(randomField(CITIES))
@@ -61,12 +61,11 @@ public class EmployeeUtil {
     }
 
     private static Employee randomEmployee() {
-        return Employee.builder()
-                .id(randomId())
-                .firstName(randomField(FIRST_NAMES))
-                .lastName(randomField(LAST_NAMES))
-                .address(randomAddress())
-                .joiningDate(randomDate(1980, 2024)).build();
+        return Employee.createWithDefaults(randomId(),
+                randomField(FIRST_NAMES),
+                randomField(LAST_NAMES),
+                randomAddress(),
+                randomDate(1980, 2024));
     }
 
 }

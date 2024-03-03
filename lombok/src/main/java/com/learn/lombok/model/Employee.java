@@ -1,23 +1,17 @@
 package com.learn.lombok.model;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.NonNull;
+import lombok.With;
 
 import java.time.LocalDate;
 
-@EqualsAndHashCode
-@Getter
-@Builder
-public class Employee {
-
-    private int id;
-
-    private String firstName;
-
-    private String lastName;
-
-    private Address address;
-
-    private LocalDate joiningDate;
+public record Employee(int id,
+                       @NonNull String firstName,
+                       @NonNull String lastName,
+                       @With @NonNull Address address,
+                       @NonNull LocalDate joiningDate,
+                       @With EmployeeType status) {
+    public static Employee createWithDefaults(int id, String firstName, String lastName, Address address, LocalDate joiningDate) {
+        return new Employee(id, firstName, lastName, address, joiningDate, EmployeeType.TEMP);
+    }
 }

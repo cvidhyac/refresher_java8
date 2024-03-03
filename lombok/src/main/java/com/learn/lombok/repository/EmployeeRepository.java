@@ -1,7 +1,10 @@
 package com.learn.lombok.repository;
 
+import com.learn.lombok.model.AddressType;
 import com.learn.lombok.model.Employee;
+import com.learn.lombok.model.EmployeeType;
 import com.learn.lombok.service.EmployeeUtil;
+import lombok.Getter;
 import lombok.val;
 import org.springframework.stereotype.Repository;
 
@@ -12,23 +15,33 @@ import java.util.function.Supplier;
 @Repository
 public class EmployeeRepository {
 
-    Supplier<List<Employee>> employeeSupplier = () -> EmployeeUtil.randomEmployees(10);
+    //Note - note the use of getEmployeeSupplier() method to access the cached response
+    @Getter(lazy = true)
+    private final Supplier<List<Employee>> employeeSupplier = () -> EmployeeUtil.randomEmployees(10);
 
     public List<Employee> findAll() {
-        return employeeSupplier.get();
+        return getEmployeeSupplier().get();
     }
 
-    public Employee resetRandom() {
+    public Employee resetImmutableRandom() {
         //use lombok val to assign final values of local inference types
-        val employee = employeeSupplier.get().stream()
+        val employee = getEmployeeSupplier().get().stream()
                 .findAny();
 
-        //does not modify the data in the supplier
-        return employee.map(obj -> Employee.builder().id(obj.getId())
-                .address(obj.getAddress())
-                .firstName(obj.getFirstName())
-                .lastName(obj.getLastName())
-                .joiningDate(LocalDate.now()).build())
+        //The only way to modify an 'Immutable field' is to copy it over to a new object
+        val newJoiningDate = LocalDate.now();
+        return employee.map(obj -> new Employee(obj.id(), obj.firstName(), obj.lastName(), obj.address(),
+                        newJoiningDate, EmployeeType.TEMP))
                 .orElseThrow(() -> new IllegalArgumentException("Employee cannot be null"));
     }
+
+    public Employee resetMutableRandom() {
+        val employee = getEmployeeSupplier().get().stream().findAny();
+
+        return employee.map(obj -> obj.withStatus(EmployeeType.FTE))
+                .map(obj -> obj.withAddress(obj.address().withAddressType(AddressType.OFFICE)))
+                .orElseThrow(() -> new IllegalArgumentException("Employee cannot be null"));
+    }
+
+
 }

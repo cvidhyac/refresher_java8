@@ -3,10 +3,15 @@ package com.learn.lombok.model;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import lombok.With;
 
 @Builder
 @EqualsAndHashCode
 public class Address {
+
+    @Builder.Default
+    @With
+    private AddressType addressType = AddressType.HOME;
 
     private int unitNumber;
 
@@ -22,3 +27,5 @@ public class Address {
     @NonNull
     private String zipCode;
 }
+
+
