@@ -1,9 +1,4 @@
-plugins {
-    id 'java'
-}
-
-group 'org.example'
-version '1.0-SNAPSHOT'
+project.name = 'refresher-java17'
 
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.30'

@@ -1,4 +1,3 @@
-rootProject.name = 'refresher_java8'
-include 'lombok'
-include 'java17'
-
+rootProject.name = 'refresher-java8-plus'
+include 'refresher-lombok'
+include 'refresher-java17'
